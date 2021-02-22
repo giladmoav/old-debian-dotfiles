@@ -2,7 +2,6 @@ let mapleader = " "
 " calling Plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'file:///home/gilad/projects/runcode'
 Plug 'lambdalisue/suda.vim'
 " NERD tree
 Plug 'preservim/nerdtree'
@@ -81,6 +80,7 @@ set autoindent
 
 " multi windowd work
 
+map <silent> <Leader>d :vs new split<CR>
 set splitbelow
 set splitright
 nnoremap <silent> <leader>+ :vertical resize +3<CR>
@@ -98,7 +98,9 @@ tmap <C-K> <Esc><C-K>
 tmap <C-L> <Esc><C-L>
 
 " terminal
+tmap <silent> <F1> <C-\><C-n>:q<CR>
 tmap <Esc> <C-\><C-n>
+tmap q :q
 nmap <C-t> :vsplit<CR><C-l>:set nonumber<CR>:set norelativenumber<CR>:terminal<CR>i
 " clipboard
 vmap <C-c> "+y
@@ -129,3 +131,5 @@ set formatoptions-=cro
 " set mouse=a
 set updatetime=300
 set timeoutlen=100
+nmap <silent> <Leader>q :q<CR>
+nmap <silent> <Leader>w :w<CR>
