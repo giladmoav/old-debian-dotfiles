@@ -2,6 +2,7 @@ let mapleader = " "
 " calling Plug
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'file:///home/gilad/projects/runcode'
 Plug 'lambdalisue/suda.vim'
 " NERD tree
 Plug 'preservim/nerdtree'
@@ -37,7 +38,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}' " Show time instead of line number
 
 call plug#end()
-
 " NERDTree
 nmap <C-f> :NERDTreeToggle<CR>
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -121,6 +121,8 @@ set noswapfile
 set undodir=~/.config/nvim/undodir
 set undofile
 
+" run
+nmap <silent> <Leader>r :call setreg('z', [expand('%:p')])<CR>:vsplit<CR>:set nonumber<CR>:set norelativenumber<CR>:terminal<CR>irun <ESC> "zpA<CR> <ESC> 
 " etc
 set noshowmode
 set formatoptions-=cro
