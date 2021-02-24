@@ -79,12 +79,12 @@ set smarttab
 set autoindent
 
 " multi windowd work
-
+nnoremap <TAB> <C-w><C-w>
 map <silent> <Leader>d :vs new split<CR>
 set splitbelow
 set splitright
-nnoremap <silent> <leader>+ :vertical resize +3<CR>
-nnoremap <silent> <leader>- :vertical resize -3<CR>
+nnoremap <silent> + :vertical resize +3<CR>
+nnoremap <silent> _ :vertical resize -3<CR>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -100,7 +100,6 @@ tmap <C-L> <Esc><C-L>
 " terminal
 tmap <silent> <F1> <C-\><C-n>:q<CR>
 tmap <Esc> <C-\><C-n>
-tmap q :q
 nmap <C-t> :vsplit<CR><C-l>:set nonumber<CR>:set norelativenumber<CR>:terminal<CR>i
 " clipboard
 vmap <C-c> "+y
@@ -125,11 +124,16 @@ set undofile
 
 " run
 nmap <silent> <Leader>r :call setreg('z', [expand('%:p')])<CR>:vsplit<CR>:set nonumber<CR>:set norelativenumber<CR>:terminal<CR>irun <ESC> "zpA<CR> <ESC> 
+" hebrew
+
+for b in [ "א", "ב", "ג", "ד", "ה", "ו" ,"ז", "ח", "ט", "י", "כ", "ל", "מ", "נ", "ס", "ע", "פ" ,"ק", "ר", "ש", "ת"]
+    exec ":nmap <silent> " . b . " :echo \"hebrew\"<CR>"
+endfor
 " etc
 set noshowmode
 set formatoptions-=cro
 " set mouse=a
 set updatetime=300
 set timeoutlen=100
-nmap <silent> <Leader>q :q<CR>
 nmap <silent> <Leader>w :w<CR>
+nmap <silent> <Leader>q :q<CR>
