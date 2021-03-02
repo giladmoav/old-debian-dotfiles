@@ -11,6 +11,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 let g:coc_global_extensions = [
     \ 'coc-css',
+    \ 'coc-java',
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-snippets',
@@ -19,7 +20,8 @@ let g:coc_global_extensions = [
     \ 'coc-python',
     \ 'coc-eslint',
     \ 'coc-pairs',
-    \ 'coc-highlight'
+    \ 'coc-highlight',
+    \ 'coc-clangd'
 \ ]
 
 " Suda.vim
@@ -123,11 +125,11 @@ set undodir=~/.config/nvim/undodir
 set undofile
 
 " run
-nmap <silent> <Leader>r :call setreg('z', [expand('%:p')])<CR>:vsplit<CR>:set nonumber<CR>:set norelativenumber<CR>:terminal<CR>irun <ESC> "zpA<CR> <ESC> 
+nmap <silent> <Leader>r :w<CR>:call setreg('z', [expand('%:p')])<CR>:vsplit<CR>:vertical resize 40<CR>:set nonumber<CR>:set norelativenumber<CR>:terminal<CR>irun <ESC> "zpA<CR> <ESC> 
 " hebrew
 
 for b in [ "א", "ב", "ג", "ד", "ה", "ו" ,"ז", "ח", "ט", "י", "כ", "ל", "מ", "נ", "ס", "ע", "פ" ,"ק", "ר", "ש", "ת"]
-    exec ":nmap <silent> " . b . " :echo \"hebrew\"<CR>"
+    exec ":nmap <silent> " . b . " :echo \"you are using hebrew\"<CR>"
 endfor
 " etc
 set noshowmode
@@ -137,3 +139,8 @@ set updatetime=300
 set timeoutlen=100
 nmap <silent> <Leader>w :w<CR>
 nmap <silent> <Leader>q :q<CR>
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-h> <Left>
+imap <C-l> <Right>
+imap <C-a> <C-o>A
