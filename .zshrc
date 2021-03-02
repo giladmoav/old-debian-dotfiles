@@ -104,10 +104,12 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+[ -f "$HOME/.config/extraconfigs" ] && source "$HOME/.config/extraconfigs"
 
+
+# vi mode
+bindkey -v
