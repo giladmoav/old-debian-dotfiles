@@ -28,9 +28,9 @@ pdf()
 {
     if [[ $1 = http* ]]
     then
-        curl $1 2>&- | zathura -
+        curl $1 2>&- | setsid zathura - & disown
     else
-        zathura $1
+        setsid zathura $1 & disown
     fi
 }
 run() {
