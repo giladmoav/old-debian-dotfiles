@@ -24,6 +24,15 @@ ex ()
   fi
 }
 
+pdf()
+{
+    if [[ $1 = http* ]]
+    then
+        curl $1 2>&- | zathura -
+    else
+        zathura $1
+    fi
+}
 run() {
     lang=$(echo $1 | rev | cut -d'.' -f 1 | rev);
     if [ $lang = "c" ]; then
@@ -79,3 +88,4 @@ alias bat="batcat"
 alias install="sudo apt install"
 alias whatsapp='firefox -ssb web.whatsapp.com'
 alias wha='whatsapp'
+alias genact='~/Downloads/genact-v0.10.0-linux-x86_64'
