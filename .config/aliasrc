@@ -33,8 +33,10 @@ pdf()
         setsid zathura $1 & disown
     fi
 }
+
 run() {
-    lang=$(echo $1 | rev | cut -d'.' -f 1 | rev);
+    rev=$(echo $1 | rev) 
+    lang=$(echo $rev | cut -d'.' -f 1 | rev);
     if [ $lang = "c" ]; then
         x=$(mktemp);
         gcc $1 -o $x && $x ${@:2};
@@ -44,7 +46,7 @@ run() {
         g++ $1 -o $x && $x ${@:2};
         rm $x;
     elif [ $lang = "java" ]; then
-        java $1 ${@:2};
+        /usr/lib/jvm/java-8-openjdk-amd64/bin/javac $1; java $(echo ${rev:5} | rev) ${@:2};
     elif [ $lang = "py" ]; then
         python3 $@ ${@:2}; 
     else
@@ -78,14 +80,8 @@ alias -g L="| less"
 
 alias h='history | grep '
 
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-# alias vim='nvim'
 alias v='nvim'
 alias x='exit'
+alias w='~/.config/wallpaperseter.py'
 alias bat="batcat"
-alias install="sudo apt install"
-alias whatsapp='firefox -ssb web.whatsapp.com'
-alias wha='whatsapp'
-alias genact='~/Downloads/genact-v0.10.0-linux-x86_64'
+alias install="sudo apt install -y"
