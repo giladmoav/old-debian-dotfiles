@@ -110,6 +110,9 @@ vmap <C-v> c<ESC>"+p
 nmap <C-v> "+p
 imap <C-v> <ESC>"+pa
 
+" instead of C-v to get into Visual block mode use m-v
+command! Vb normal! <C-v>
+
 " search
 set incsearch ignorecase smartcase hlsearch
 
@@ -131,6 +134,13 @@ nmap <silent> <Leader>r :w<CR>:call setreg('z', [expand('%:p')])<CR>:vsplit<CR>:
 for b in [ "א", "ב", "ג", "ד", "ה", "ו" ,"ז", "ח", "ט", "י", "כ", "ל", "מ", "נ", "ס", "ע", "פ" ,"ק", "ר", "ש", "ת"]
     exec ":nmap <silent> " . b . " :echo \"you are using hebrew\"<CR>"
 endfor
+
+" Use jk,kj to Escape from insert mode
+imap jk <Esc>
+imap kj <Esc>
+vmap jk <Esc>
+vmap kj <Esc>
+
 " etc
 set noshowmode
 set formatoptions-=cro
@@ -144,3 +154,4 @@ imap <C-k> <Up>
 imap <C-h> <Left>
 imap <C-l> <Right>
 imap <C-a> <C-o>A
+imap <C-CR>
