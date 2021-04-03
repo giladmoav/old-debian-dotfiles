@@ -2,7 +2,10 @@ let mapleader = " "
 " calling Plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'lambdalisue/suda.vim'
+" easymotion
+Plug 'easymotion/vim-easymotion'
+nmap <Space> <Plug>(easymotion-bd-w)
+
 " NERD tree
 Plug 'preservim/nerdtree'
 
@@ -25,6 +28,7 @@ let g:coc_global_extensions = [
 \ ]
 
 " Suda.vim
+Plug 'lambdalisue/suda.vim'
 let g:suda_smart_edit = 1
 
 " Color scheme
@@ -154,4 +158,3 @@ imap <C-k> <Up>
 imap <C-h> <Left>
 imap <C-l> <Right>
 imap <C-a> <C-o>A
-imap <C-CR>
