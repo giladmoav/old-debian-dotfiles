@@ -1,0 +1,61 @@
+set previewer ~/.config/lf/oldpreview
+set preview true
+set icons true
+set ignorecase true
+
+# Remove some defaults
+map m
+map d
+map c
+map f
+# Custom Functions
+
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/x-tex) lyx "$f";;
+        text/*|application/json|inode/x-empty) $EDITOR "$f";;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
+
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  chmod $ans $file
+  lf -remote 'send reload'
+}}
+
+cmd sudomkfile ${{
+  printf "File Name: "
+  read ans
+  sudo $EDITOR $ans
+}}
+
+map i invert
+map gc cd ~/.config
+map . set hidden!
+map d delete
+map o open
+map p paste
+map x cut
+map y copy
+map <enter> open
+map mf mkfile
+map mr sudomkfile
+map md mkdir
+map ch chmod
+map r rename
+map R reload
+map C clear
+map U unselect
