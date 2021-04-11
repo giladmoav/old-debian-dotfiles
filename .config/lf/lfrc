@@ -10,8 +10,13 @@ map c
 map f
 # Custom Functions
 
+cmd drag ${{
+    ~/.local/bin/dragon "$f"
+}}
+
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
+        image/*) env LC_ALL=en_US.UTF-8 sxiv "$f";;
         text/x-tex) lyx "$f";;
         text/*|application/json|inode/x-empty) $EDITOR "$f";;
         *) xdg-open "$f" ;;
@@ -32,7 +37,9 @@ cmd mkfile ${{
 }}
 
 cmd chmod ${{
-  chmod $ans $file
+  printf "permissions: "
+  read ans
+  chmod $ans "$f"
   lf -remote 'send reload'
 }}
 
@@ -42,8 +49,11 @@ cmd sudomkfile ${{
   sudo $EDITOR $ans
 }}
 
+map bj %dragon "$f"
+map bf %NEWFILE=$(dragon -t -x); curl --output $(echo $NEWFILE | rev | cut -d'/' -f1 | rev) $NEWFILE
 map i invert
 map gc cd ~/.config
+map gr cd /
 map . set hidden!
 map d delete
 map o open
