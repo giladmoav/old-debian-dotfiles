@@ -1,4 +1,6 @@
-set previewer ~/.config/lf/oldpreview
+set ratios 1:2:3
+set cleaner ~/.config/lf/cleaner
+set previewer ~/.config/lf/preview
 set preview true
 set icons true
 set ignorecase true
@@ -16,10 +18,10 @@ cmd drag ${{
 
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
-        image/*) env LC_ALL=en_US.UTF-8 sxiv "$f";;
-        text/x-tex) lyx "$f";;
+        image/*) sxiv "$f" & disown;;
+        text/x-tex) setsid lyx "$f" & disown;;
         text/*|application/json|inode/x-empty) $EDITOR "$f";;
-        *) xdg-open "$f" ;;
+        *) mimeopen "$f" & disown;;
     esac
 }}
 
@@ -52,8 +54,6 @@ cmd sudomkfile ${{
 map bj %dragon "$f"
 map bf %NEWFILE=$(dragon -t -x); curl --output $(echo $NEWFILE | rev | cut -d'/' -f1 | rev) $NEWFILE
 map i invert
-map gc cd ~/.config
-map gr cd /
 map . set hidden!
 map d delete
 map o open
@@ -69,3 +69,11 @@ map r rename
 map R reload
 map C clear
 map U unselect
+
+
+# cd s
+
+map gc cd ~/.config
+map gr cd /
+map gd cd ~/Downloads; set sortby time
+map go cd ~/projects/odisea
