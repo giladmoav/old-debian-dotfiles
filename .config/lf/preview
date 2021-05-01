@@ -66,12 +66,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
           then
               readelf -h $1
           else
-		    if command -v bat > /dev/null 2>&1
-		    then
-		    	    bat --color=always --style=plain --pager=never "$1"
-		    else
-		    	    cat "$1"
-		    fi
+              highlight "$1" -O ansi --force
          fi
 		;;
 esac
