@@ -52,11 +52,11 @@ cmd sudomkfile ${{
 }}
 
 map bj %dragon "$f"
-map bf %NEWFILE=$(dragon -t -x); curl --output $(echo $NEWFILE | rev | cut -d'/' -f1 | rev) $NEWFILE
+map bf %NEWFILE=$(dragon -t -x) && curl --output $(echo $NEWFILE | rev | cut -d'/' -f1 | rev) $NEWFILE
 map i invert
 map . set hidden!
 map d delete
-map o open
+map oi $~/Downloads/idea-IC-203.7148.57/bin/idea "$f" & disown
 map p paste
 map x cut
 map y copy
@@ -69,6 +69,7 @@ map r rename
 map R reload
 map C clear
 map U unselect
+map <esc> quit
 
 
 # cd s
